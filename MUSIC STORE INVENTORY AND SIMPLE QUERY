@@ -1,0 +1,23 @@
+CREATE TABLE music_store (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, price INTEGER, quality TEXT);
+INSERT INTO music_store VALUES (1, "Fender Stratocaster", 5, 500, "new");
+INSERT INTO music_store VALUES (2, "Fender Telecaster", 5, 700, "new");
+INSERT INTO music_store VALUES (3, "Vader Drumsticks", 30, 20, "new");
+INSERT INTO music_store VALUES (4, "Tama Rockstar Snaredrum", 10, 200, "new");
+INSERT INTO music_store VALUES (5, "Roland Electric Drumkit", 2, 2000, "new");
+INSERT INTO music_store VALUES (6, "Fender Jazz Bass", 10, 300, "new");
+INSERT INTO music_store VALUES (7, "Gibson Acoustic Guitar", 5, 3500, "used");
+INSERT INTO music_store VALUES (8, "fender stratocaster starter", 20, 200, "new");
+INSERT INTO music_store VALUES (9, "Gibson les Paul", 8, 1200, "new");
+INSERT INTO music_store VALUES (10, "Vintage Gibson Les Paul", 3, 5000, "used");
+INSERT INTO music_store VALUES (11, "Nord Keyboard", 10, 4200, "new");
+INSERT INTO music_store VALUES (12, "Martin Travel Series Acoustic Guitar", 12, 300, "new");
+INSERT INTO music_store VALUES (13, "vintage Martin Classic Acoustic Guitar", 1, 1500, "used");
+INSERT INTO music_store VALUES (14, "1970 Les Paul", 1, 5500, "used");
+INSERT INTO music_store VALUES (15, "Yamaha Baby Grand custom gray finish", 1, 10000, "used");
+
+--MAKING A TABLE WITH ALL THE ENTRIES ORDERED BY PRICE LEAST EXPENSIVE TO MOST EXPENSIVE
+SELECT * FROM music_store ORDER BY price;
+
+--RUNNING A QUERY TO FIND OUT HOW MANY ITEMS ARE IN THE STORE
+SELECT SUM(quantity) FROM music_store
+
