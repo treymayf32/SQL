@@ -1,0 +1,71 @@
+CREATE TABLE music_artists (id INTEGER PRIMARY KEY, name TEXT, genre TEXT);
+
+INSERT INTO music_artists (name, genre) VALUES ("usher", "R&B");
+INSERT INTO music_artists (name, genre) VALUES ("Beyonce", "R&B");
+INSERT INTO music_artists (name, genre) VALUES ("Drake", "rap");
+INSERT INTO music_artists (name, genre) VALUES ("kendrick lamar", "rap");
+INSERT INTO music_artists (name, genre) VALUES ("J.Cole", "rap");
+INSERT INTO music_artists (name, genre) VALUES ("Tupac", "rap");
+INSERT INTO music_artists (name, genre) VALUES ("The Weeknd", "R&B");
+INSERT INTO music_artists (name, genre) VALUES ("Alicia Keys", "R&B");
+
+CREATE TABLE billboard_charts (artist_id INTEGER, song TEXT, weeks_charted INTEGER);
+
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (1, "Yeah!", 45);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (1, "U Got It Bad", 32);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (1, "Burn", 30);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (2, "Perfect", 57);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (2, "Irreplaceable", 30);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (2, "Baby Boy", 29);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (3, "Wait For U", 41);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (3, "God's Plan", 36);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (3, "Work", 36);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (4, "Humble", 37);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (4, "Bad Blood", 25);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (6, "How Do U Want It/California Love", 26);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (7, "Blinding Lights", 90);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (7, "save your tears", 69);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (7, "the hills", 48);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (8, "No One", 39);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (8, "Fallin'", 34);
+INSERT INTO billboard_charts (artist_id, song, weeks_charted) VALUES (8, "Empire State of Mind", 30);
+
+CREATE TABLE album_sales (artist_id INTEGER, album TEXT, copies_sold INTEGER);
+
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (1, "confessions", 20000000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (1, "my way", 6344000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (1, "8701", 5796970);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (2, "dangerously in love", 7684083);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (2, "I am Sasha Fierce", 6603000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (2, "B'Day", 4999906);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (3, "Views", 7657500);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (3, "Take Care", 6920000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (3, "Scorpion", 6133983);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (4, "DAMN.", 4070414);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (4, "GOOD KID, M.A.A.D. CITY", 3552000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (4, "TO PIMP A BUTTERFLY", 1318219);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (5, "2014 Forest Hills Drive", 3230000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (5, "Born Sinner", 2140000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (5, "KOD", 1140000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (6, "Greatest Hits", 6687290);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (6, "All Eyez On Me", 5412500);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (6, "THE DON KILLUMINATI: THE 7 DAY THEORY", 4110000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (7, "Beauty Behind the Madness", 5299588);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (7, "Starboy", 4421666);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (7, "After Hours", 4402942);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (8, "Songs in a Minor", 12000000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (8, "The Diary of Alicia Keys", 7500000);
+INSERT INTO album_sales (artist_id, album, copies_sold) VALUES (8, "As I Am", 6000000);
+
+SELECT * FROM music_artists;
+SELECT * FROM billboard_charts;
+SELECT * FROM album_sales;
+
+/*Which genre has sold more albums?*/
+
+SELECT music_artists.genre, TOTAL(album_sales.copies_sold) AS albums_sold
+    FROM music_artists
+    JOIN album_sales
+    ON music_artists.id = album_sales.artist_id
+    GROUP BY music_artists.genre;
+    
