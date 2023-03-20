@@ -56,3 +56,9 @@ select count(distinct cust.acctnum), avg(quantity*price)
     ON FEB.orderid=cust.order_id
     WHERE Feb.Quantity>2;
     
+/*List all the products sold in Los Angeles in February, and include how many of each were sold*/
+
+SELECT Product, sum(quantity), location
+    FROM BIT_DB.FebSales 
+    WHERE location like '%Los Angeles%'
+    GROUP BY Product;
