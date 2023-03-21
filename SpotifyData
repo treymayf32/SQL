@@ -1,0 +1,63 @@
+
+
+/*For this project, I downloaded Spotify data from Kaggle.
+Then I created a table to insert Spotify data into.
+Finally, I performed analytics on the data using SQL. */
+
+/*Creating the table:*/ 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+/*Then I inserted the Spotify Data .csv into the table.
+Next, I explored the data using the following SQL. */
+
+
+SELECT * FROM BIT_DB.Spotifydata;
+
+/* What is the avargae danceability of this spotify playlist?*/
+SELECT AVG(danceability) FROM BIT_DB.Spotifydata;
+
+/* Who are the most popular artists (top 5) on this playlist? */
+SELECT artist_name, popularity 
+    FROM BIT_DB.Spotifydata
+    ORDER BY popularity desc
+    LIMIT 5;
+    
+/* Are there any artists using same tempo in their songs? if so, Who and how many songs? */
+SELECT artist_name, COUNT (ROUND(tempo))
+    FROM BIT_DB.Spotifydata
+    GROUP BY artist_name
+    HAVING COUNT (tempo) > 1
+    ORDER BY tempo;
+    
+/*What is the song with the most acoustic sound with a bpm over 120?*/
+SELECT track_name, acousticness, tempo
+    FROM BIT_DB.Spotifydata
+    GROUP BY track_name
+    HAVING tempo > 120
+    ORDER BY acousticness desc
+    LIMIT 1;
+    
+/*What tempo is the most popular song?*/
+SELECT artist_name, track_name, tempo, popularity
+    FROM BIT_DB.Spotifydata
+    order by popularity desc
+    LIMIT 1;
